@@ -188,8 +188,8 @@ body{
   background: linear-gradient(#ffab87, #8bacdb);
 }
 .player{
-  /* background: url("/player.png") no-repeat center/cover; */
-  background: url("/skins/blueCollar.png") no-repeat center/cover;
+  background: url("./img/player.png") no-repeat center/cover;
+   /*background: url("/skins/blueCollar.png") no-repeat center/cover;*/
   image-rendering: pixelated;
   position: absolute;
   width: 67px;
