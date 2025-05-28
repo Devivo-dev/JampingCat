@@ -18,6 +18,9 @@ let lives = 3;
 let coinAmount = 0;
 let fallSpeed = 2;
 
+let gameRunning = true;
+let animationFrameId;
+
 const playerHeight = player.offsetHeight;
 const playerWidth = player.offsetWidth;
 
@@ -30,32 +33,56 @@ let posY = 0;
 let velocityY = 0;
 
 function spawnCoin() {
-
   const coinHeight = coin.offsetHeight;
   const coinWidth = coin.offsetWidth;
 
   const cloudRect = cloud.getBoundingClientRect();
   const gameRect = gameWindow.getBoundingClientRect();
 
-  // Відстань від верху game-window до низу хмарки
   const topBoundary = cloudRect.bottom - gameRect.top;
   const bottomBoundary = gameHeight - coinHeight;
 
-  // Обмежуємо появу в межах від хмарки до низу вікна
   const rmdY = topBoundary + Math.random() * (bottomBoundary - topBoundary);
   const rmdX = Math.random() * (gameWidth - coinWidth);
 
   coin.style.left = rmdX + "px";
   coin.style.top = rmdY + "px";
   coin.style.display = "block";
-} 
 
-setTimeout(() => {
-  setInterval(() => {
-    spawnRaindrop();
+  // 🟠 Автозникнення через 5 секунд
+  clearTimeout(coin.despawnTimer); // скасовуємо попередній, якщо ще не спрацював
+  coin.despawnTimer = setTimeout(() => {
+    if (coin.style.display === "block") {
+      coin.style.display = "none";
+      spawnCoin(); // Респавн у новому місці
+    }
+  }, 5000);
+}
+
+const countdownText = document.querySelector('.game-star');
+
+function startCountdown() {
+  let count = 3;
+  countdownText.textContent = count;
+
+  const countdownInterval = setInterval(() => {
+    count--;
+    if (count === 0) {
+      countdownText.textContent = "Start!";
+    } else {
+      countdownText.textContent = count;
+    }
+
+    if (count < 0) {
+      clearInterval(countdownInterval);
+      countdownText.textContent = "";
+      update(); // Починаємо гру
+    }
   }, 1000);
-}, 2000);
+}
 
+// Замість просто update()
+startCountdown();
 
 function spawnRaindrop() {
   const drop = document.createElement('div');
@@ -124,18 +151,25 @@ function handleLifeLoss() {
     secondLife.style.opacity = 0.3;
   } else if (lives === 0) {
     firstLife.style.opacity = 0.3;
-    // Тут можна зупинити гру або показати GAME OVER
-    alert("😿 Котик промок! Game Over!");
-    location.reload(); // або resetGame()
+
+    document.querySelector(".modal").classList.remove("hidden");
+
+    // Зробити кнопки неактивними
+    jumpToLeft.classList.add("disabled");
+    jumpToRight.classList.add("disabled");
   }
 }
 
 function update(){
+
+  if (!gameRunning) return;
+
   score.textContent = scoreAmount;
   velocityY += 0.5;
   posY += velocityY;
   posX += velocityX;
   
+
   if (posY < 0){
     posY = 0;
     velocityY = 0;
@@ -158,19 +192,24 @@ function update(){
   player.style.left = posX + "px";
 
 
-  if (isColliding(player, coin)) {
-    coinAmount += 1;
-    coinValue.textContent = coinAmount;
-    coin.style.display = "none";
-    setTimeout(spawnCoin, 2000);
-  }
+if (isColliding(player, coin)) {
+  coinAmount += 1;
+  coinValue.textContent = coinAmount;
+  coin.style.display = "none";
+
+  clearTimeout(coin.despawnTimer); // Зупиняємо зникнення, бо монета вже зібрана
+  setTimeout(spawnCoin, 2000);     // Новий спавн через 2 сек
+}
+  
+
   
   requestAnimationFrame(update)
 }
 setInterval(() => {
   if (fallSpeed > 0.5) fallSpeed -= 0.1;
 }, 10000);
-let rainInterval = 2000; // старт: 2 сек
+let rainInterval = 2000;// старт: 2 сек
+let rainTimer; 
 let difficultyIncrease = setInterval(() => {
   if (rainInterval > 500) {
     rainInterval -= 200; // кожні 10 сек −200мс
@@ -178,7 +217,6 @@ let difficultyIncrease = setInterval(() => {
     rainTimer = setInterval(spawnRaindrop, rainInterval);
   }
 }, 10000); // кожні 10 секунд
-let rainTimer;
 setTimeout(() => {
   rainTimer = setInterval(spawnRaindrop, rainInterval);
 }, 2000);
@@ -189,10 +227,10 @@ jumpToLeft.addEventListener("click" ,() => {
 
   velocityY = -10;
   velocityX = -3;
-  jumpToLeft.style.backgroundImage = 'url("./img/btn-left.png")';
-  setTimeout(()=>{
-      jumpToLeft.style.backgroundImage = "";
-  }, 150);
+jumpToLeft.classList.add("active");
+setTimeout(() => {
+  jumpToLeft.classList.remove("active");
+}, 150);
   player.style.transform = "scaleX(-1)";
 });
 jumpToRight.addEventListener("click" ,()=>
@@ -202,9 +240,25 @@ jumpToRight.addEventListener("click" ,()=>
   velocityY = -10;
   velocityX = 3;
   
-  jumpToRight.style.backgroundImage = 'url("./img/btn-right.png")';
-  setTimeout(()=>{
-      jumpToRight.style.backgroundImage = "";
-  }, 150);
+jumpToRight.classList.add("active");
+setTimeout(() => {
+  jumpToRight.classList.remove("active");
+}, 150);
   player.style.transform = "scaleX(1)";
 });
+const retryBtn = document.querySelector(".retry");
+
+retryBtn.addEventListener("click", () => {
+  retryBtn.classList.add("active");
+
+  setTimeout(() => {
+    retryBtn.classList.remove("active");
+    document.querySelector(".modal").classList.add("hidden");
+    location.reload();
+  }, 150);
+});
+// const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+// if (!isMobile) {
+//     window.location.href = "/not-supported.html";
+// }
+console.log('Rain timer: ', rainInterval)

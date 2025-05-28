@@ -40,12 +40,13 @@ img {
 :root{
 	--b: #212121;
 	--o: #FF8A37;
-	--w: #ffffff;
+	--w: #F8F8F1;
 }
 body{
   background-color: var(--b);
   font-family: "Silkscreen", sans-serif;
   overflow-y:hidden;
+  color: var(--w);
 }
 .score{
   display: flex;
@@ -93,7 +94,9 @@ body{
   left: 0;
   width: clamp(100px, 40vw, 320px);
   aspect-ratio: 2 / 1;
-  background: url("./img/cloud.png") no-repeat center/contain;
+  /* background: url("./img/cloud.png") no-repeat center/contain; */
+
+  background: url("./img/cloudBordered.png") no-repeat center/contain;
   background-size: contain;
   image-rendering: pixelated;
   z-index: 3;
@@ -111,9 +114,9 @@ body{
 
 .drop {
   position: absolute;
-  width: 12px;
-  height: 16px;
-  background: url('./img/kraplya.png') no-repeat center/contain;
+  width: 16px;
+  height: 20px;
+  background: url('./img/kaplya.png') no-repeat center/contain;
   image-rendering: pixelated;
   animation: fall 2s linear forwards;
   pointer-events: none;
@@ -153,7 +156,7 @@ body{
 .remout-btn{
   display: flex;
   justify-content: space-between;
-  padding: 40px 20px;
+  padding: 30px 10px;
   gap: 10px;
   align-items: center;
 }
@@ -167,19 +170,37 @@ body{
   font-weight: 700; 
 }*/
 .left{
-  background: url("./img/btn-left-active.png") no-repeat center/cover;
-  width: clamp(80px, 20vw, 140px);
-  height: clamp(40px, 10vw, 70px);
+  background: url("./img/btn-left.png") no-repeat center/cover;
+  width: 102px;
+  height: 57px;
   image-rendering: pixelated;
   border: none;
 }
 .right{
-    background: url("./img/btn-right-active.png") no-repeat center/cover;
-  width: clamp(80px, 20vw, 140px);
-  height: clamp(40px, 10vw, 70px);
+    background: url("./img/btn-right.png") no-repeat center/cover;
+    
+    width: 102px;
+    height: 57px;
     image-rendering: pixelated;
     border: none;
 }
+.left.active {
+  width: 102px;
+  height: 54px;
+  background-image: url("./img/btn-left-active.png");
+}
+
+.right.active {
+  width: 102px;
+  height: 54px;
+  background-image: url("./img/btn-right-active.png");
+}
+button.left.disabled,
+button.right.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
 .game-window{
   width: 100%;
   height: calc(100vh - 180px);
@@ -204,8 +225,78 @@ body{
 .firstLife, 
 .secondLife, 
 .thirdLife{
-  width:clamp(30px, 8vw, 40px);
-  height: clamp(30px, 10vw, 40px);
-    background: url("./img/ball-of-thread.png") no-repeat center/cover;
+  width:clamp(30px, 8vw, 30px);
+  height: clamp(30px, 10vw, 30px);
+  background: url("./img/ball-of-thread.png") no-repeat center/cover;
   image-rendering: pixelated;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 300px;
+  height: 360px;
+
+  background: url("./img/EndGame.png") no-repeat center/cover;
+  image-rendering: pixelated;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+
+.retry{
+  font-family: 'Silkscreen', monospace;
+  font-size: 2rem;
+  padding-bottom: 10px;
+  cursor: pointer;
+  background: url("./img/btn-retry.png") no-repeat center;
+  background-size: contain;
+  image-rendering: pixelated;
+  border: none;
+  outline: none;
+  width: 192px;  
+  height: 76px;
+  color: var(--b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 52%;
+  transform: translate(-50%, -50%);
+}
+.retry.active {
+  width: 192px;  
+  height: 74px;
+  background-image: url("./img/btn-retry-active.png");
+}
+
+.hidden {
+  display: none;
+}
+
+.game-star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  color: var(--b);
+  z-index: 1000;
+  pointer-events: none;
+  text-shadow: 2px 2px 0 #fff;
+  animation: scaleIn 0.4s ease-in-out;
+}
+
+@keyframes scaleIn {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }
