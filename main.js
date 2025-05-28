@@ -221,7 +221,6 @@ setTimeout(() => {
   rainTimer = setInterval(spawnRaindrop, rainInterval);
 }, 2000);
 spawnCoin();
-update();
 jumpToLeft.addEventListener("click" ,() => {
     scoreAmount += 1;
 
@@ -261,4 +260,4 @@ retryBtn.addEventListener("click", () => {
 // if (!isMobile) {
 //     window.location.href = "/not-supported.html";
 // }
-console.log('Rain timer: ', rainInterval)
+// console.log('Rain timer: ', rainInterval)
