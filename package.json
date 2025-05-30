@@ -2,15 +2,15 @@
   "name": "telegram-miniapp",
   "version": "1.0.0",
   "homepage": "https://devivo-dev.github.io/JampingCat",
-"scripts": {
-  "dev": "vite",
-  "build": "vite build"
-},
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "glob": "^11.0.2",
     "sass": "^1.89.0",
-    "vite": "^5.0.0"
+    "vite": "^5.4.19"
   },
   "dependencies": {
     "vite-plugin-full-reload": "^1.2.0"
