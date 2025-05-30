@@ -4,10 +4,8 @@
   "homepage": "https://devivo-dev.github.io/JampingCat",
 "scripts": {
   "dev": "vite",
-  "build": "vite build",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist -r https://github.com/devivo-dev/JampingCat.git"
-  },
+  "build": "vite build"
+},
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "glob": "^11.0.2",

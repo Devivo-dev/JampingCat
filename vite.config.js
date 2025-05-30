@@ -1,13 +1,9 @@
-import { defineConfig } from 'vite';
-import path from 'path';
-import { globSync } from 'glob';
-import FullReload from 'vite-plugin-full-reload';
-
 export default defineConfig({
+  base: '/JampingCat/', // <- важливо для GitHub Pages
   root: 'src',
   build: {
     rollupOptions: {
-      input: globSync('./src/**/*.html')// знайде всі HTML в src
+      input: globSync('./src/**/*.html')
     },
     outDir: '../dist',
     emptyOutDir: true
