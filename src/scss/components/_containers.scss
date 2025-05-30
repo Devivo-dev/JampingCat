@@ -1,0 +1,24 @@
+.container{
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  max-height: 100vh;
+	// outline: 1px dotted tomato;
+}
+body{
+	font-family: "Silkscreen", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background-color: getColor('col-b');
+  font-family: "Silkscreen", sans-serif;
+  overflow-y:hidden;
+  color: getColor('col-w');
+}
+button,
+button:focus,
+button:active {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}

@@ -1,0 +1,14 @@
+$colors:(
+	col-b:#212121,
+	col-o:#FF8A37,
+	col-w:#F8F8F1,
+	);
+$fonts:(
+	font-pixel:'Silkscreen',
+	);
+@function getFont($key) {
+    @return map-get($fonts, $key);
+}
+@function getColor($key) {
+    @return map-get($colors, $key);
+}

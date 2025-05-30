@@ -1,0 +1,85 @@
+.game{
+	&__start-message{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 5rem;
+		color: getColor('col-b');
+		z-index: 1000;
+		pointer-events: none;
+		text-shadow: 2px 2px 0 #fff;
+		animation: scaleIn 0.4s ease-in-out;
+	}
+	&__window{
+		width: 100%;
+		height: calc(100vh - 180px);
+		position: relative;
+		overflow: hidden;
+		background: linear-gradient(#ffab87, #8bacdb);
+	}
+	&__cloud{
+		position: absolute;
+		top: 1vh;
+		left: 0;
+		width: clamp(100px, 40vw, 320px);
+		aspect-ratio: 2 / 1;
+
+		background: url("../../assets/img/cloudBordered.png") no-repeat center/contain;
+		background-size: contain;
+		image-rendering: pixelated;
+		z-index: 3;
+		pointer-events: none;
+
+		animation: cloudMove 14s ease-in-out infinite;
+	}
+	&__player{
+		background: url("../../assets/skins/simplePlayer.png") no-repeat center/cover;
+		image-rendering: pixelated;
+		position: absolute;
+		width: 67px;
+		height: 60px;
+		transition: transform 0.3 ease ;
+	}
+	
+	&__coin{
+    display: inline-block;
+		width: 32px;
+		height: 32px;
+    background: url("../../assets/img/whiskas.png") no-repeat center/cover;
+    image-rendering: pixelated;
+
+		position: absolute;
+		display: none;
+	}
+}
+@keyframes cloudMove {
+  0%   { left: 0; }
+  50%  { left: calc(100% - clamp(100px, 40vw, 320px)); }
+  100% { left: 0; }
+}
+@keyframes scaleIn {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+.drop {
+  position: absolute;
+  width: 16px;
+  height: 20px;
+  background: url('../../assets/img/kaplya.png') no-repeat center/contain;
+  image-rendering: pixelated;
+  animation: fall 2s linear forwards;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0.5;
+    transform: translateY(100vh);
+  }
+}
