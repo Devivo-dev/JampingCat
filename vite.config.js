@@ -1,9 +1,15 @@
+import { defineConfig } from 'vite';
+import path from 'path';
+import { globSync } from 'glob'; // <- виправлено
+import injectHTML from 'vite-plugin-html-inject';
+import FullReload from 'vite-plugin-full-reload';
+
 export default defineConfig({
-  base: '/JampingCat/', // <- важливо для GitHub Pages
+  base: '/JampingCat/',
   root: 'src',
   build: {
     rollupOptions: {
-      input: globSync('./src/**/*.html')
+      input: globSync('./src/**/*.html') // <- тепер правильно
     },
     outDir: '../dist',
     emptyOutDir: true
@@ -16,6 +22,7 @@ export default defineConfig({
     }
   },
   plugins: [
+    injectHTML(),
     FullReload(['./src/**/*.html'])
   ]
 });
