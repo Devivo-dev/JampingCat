@@ -1,0 +1,19 @@
+@mixin FLXcntr{
+    display: flex;
+    align-items: center;
+}
+@mixin FLXALGNcntr{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+@mixin FLXALGNcntrcntn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@mixin FLXAIcntrJCspcbtw{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
