@@ -1,0 +1,61 @@
+.score{
+	display: flex;
+  justify-content: space-between;
+  align-items: center;
+	
+  font-size: 2rem;
+  color:  getColor('col-w');
+  padding: 20px 15px;
+
+  // &__title{
+
+  // }
+  // &__value{
+
+  // } 
+  &__value--player{
+    position: relative;
+  }
+  // &__icon{
+
+  // } 
+  // &__icon--player{
+
+  // }
+  &__block{
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+  }
+  // &__value{
+
+  // } 
+  // &__value--points{
+
+  // }
+  // &__icon{
+
+  // } 
+  &__icon--player{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url("../../assets/img/whiskas.png") no-repeat center/cover;
+    image-rendering: pixelated;
+  }
+
+  &__icon--points{
+    display: inline-block;
+    width: 31px;
+    height: 37px;
+    background: url("../../assets/img/countJump.png") no-repeat center/cover;
+    image-rendering: pixelated;
+  }
+
+  &__value--points,  &__value--player{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

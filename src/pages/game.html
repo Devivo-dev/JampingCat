@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+
+	<title>|Jumping Cat|</title>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="score">
+        <a href='../index.html' class="score__title">JC</a>
+        <div class="score__block">
+          <p class="score__value score__value--player">0</p>
+          <span class="score__icon score__icon--player"></span>
+        </div>
+        <div class="score__block">
+          <p class="score__value score__value--points">0</p>
+          <span class="score__icon score__icon--points"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <div class="game">
+        <div class="game__window">
+          <p class="game__start-message"></p>
+
+          <div class="modal modal--game-over hidden">
+            <div class="modal__window">
+              <button class="modal__retry">Retry</button>
+            </div>
+          </div>
+
+          <div class="game__cloud"></div>
+          <div class="game__player"></div>
+          <div class="game__coin"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="control">
+        <div class="control__line"></div>
+        <div class="control__buttons">
+          <button class="control__button control__button--left"></button>
+          <div class="lifes">
+            <div class="lifes__life lifes__life--first"></div>
+            <div class="lifes__life lifes__life--second"></div>
+            <div class="lifes__life lifes__life--third"></div>
+          </div>
+          <button class="control__button control__button--right"></button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="../main.js"></script>
+</body>
+</html>
