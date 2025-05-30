@@ -6,7 +6,7 @@ import path from 'path';
 
 export default defineConfig({
   // 🔥 базовий шлях для GitHub Pages
-  base: '/JampingCat/',
+  base: '/project-name/',
   root: 'src',
   build: {
     rollupOptions: {
